@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ReactCytoscape} from 'react-cytoscape';
+import ReactCytoscape from './ReactCytoscape';
 import '../style.css';
 
 class Graph extends Component {
@@ -22,8 +22,17 @@ class Graph extends Component {
   }
 
   customEventHandlers(cy) {
-
+    /// access the cy core from this function
     this.cy = cy;
+
+    cy.edgehandles({
+      toggleOffOnLeave: true,
+      handleNodes: "node",
+      handleSize: 10,
+      edgeType: function() {
+        return 'flat';
+      }
+    });
 
     cy.on('click', function(event) {
       let shiftPressed = event.originalEvent.shiftKey
@@ -32,13 +41,9 @@ class Graph extends Component {
       let idString = idNum.toString();
 
       if (event.target === cy && shiftPressed) {
-        console.log('shift + click on core', mousePos);
-        console.log(idString);
-
         cy.add([
           { group: "nodes", data: { id: idString }, renderedPosition: mousePos },
         ]);
-
       }
     })
   } 
