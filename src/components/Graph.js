@@ -4,8 +4,6 @@ import '../style.css';
 
 class Graph extends Component {
   
-  
-  
   getElements() {
     return {
 			nodes: [
@@ -23,6 +21,28 @@ class Graph extends Component {
 		};
   }
 
+  customEventHandlers(cy) {
+
+    this.cy = cy;
+
+    cy.on('click', function(event) {
+      let shiftPressed = event.originalEvent.shiftKey
+      let mousePos = event.renderedPosition
+      let idNum = event.target.nodes().size();
+      let idString = idNum.toString();
+
+      if (event.target === cy && shiftPressed) {
+        console.log('shift + click on core', mousePos);
+        console.log(idString);
+
+        cy.add([
+          { group: "nodes", data: { id: idString }, renderedPosition: mousePos },
+        ]);
+
+      }
+    })
+  } 
+
   render() {
     return (
       <ReactCytoscape 
@@ -31,22 +51,7 @@ class Graph extends Component {
         cyRef={(cy) => {
           this.cy = cy; 
           console.log(this.cy);
-          cy.on('click', function(event) {
-            let shiftPressed = event.originalEvent.shiftKey
-            let mousePos = event.renderedPosition
-            let idNum = event.target.nodes().size();
-            let idString = idNum.toString();
-
-            if (event.target === cy && shiftPressed) {
-              console.log('shift + click on core', mousePos);
-              console.log(idString);
-
-              cy.add([
-                { group: "nodes", data: { id: idString }, renderedPosition: mousePos },
-              ]);
-
-            }
-          })
+          this.customEventHandlers(cy);
         }}
       />
     )
