@@ -1,1 +1,5 @@
-visual version control app using Cytoscape js
+visual version control app using 
+
+Cytoscape js
+React
+Cytoscape-React
