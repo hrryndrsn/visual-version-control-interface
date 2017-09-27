@@ -1,0 +1,13 @@
+#cy {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+#cy canvas {
+  position: absolute;
+  top: 0px !important;
+  left: 0px !important;
+}
