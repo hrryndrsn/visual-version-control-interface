@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <div className="App">
       
-          <p>Hello React Cytoscape!</p>
+          <p>React Cytoscape!</p>
           <Graph/>
 
       </div>

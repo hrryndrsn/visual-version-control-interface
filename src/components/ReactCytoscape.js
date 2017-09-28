@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import cytoscape from 'cytoscape';
 import edgehandles from 'cytoscape-edgehandles';
-import {defaults} from '../config/edgehandles';
+import dagre from 'cytoscape-dagre';
 import cycola from 'cytoscape-cola';
 
-cytoscape.use(cycola);
+cytoscape.use(dagre);
 edgehandles(cytoscape);
 
 /** React cytoscape component
@@ -60,7 +60,7 @@ class ReactCytoscape extends Component {
 					'target-arrow-color': 'black',
 					'source-arrow-color': 'black'
 				}
-			}
+			},
 		]
 	}
 
@@ -73,7 +73,7 @@ class ReactCytoscape extends Component {
 	}
 
 	layout() {
-		return this.props.layout || { name: 'cola' };
+		return this.props.layout || { name: 'dagre' };
 	}
 
 	build() {
@@ -81,7 +81,9 @@ class ReactCytoscape extends Component {
 			container: this.getContainer(),
 
 			boxSelectionEnabled: false,
+			selectionType: 'single',
 			autounselectify: true,
+			wheelSensitivity: 0.1,
 
 			style: this.style(),
 			elements: this.elements(),
