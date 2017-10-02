@@ -82,7 +82,7 @@ class ReactCytoscape extends Component {
 
 			boxSelectionEnabled: false,
 			selectionType: 'single',
-			autounselectify: true,
+			autounselectify: false,
 			wheelSensitivity: 0.1,
 
 			style: this.style(),

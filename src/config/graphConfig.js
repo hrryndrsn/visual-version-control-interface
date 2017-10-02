@@ -24,6 +24,15 @@ module.exports = {
         'target-arrow-color': '#9dbaea',
         'curve-style': 'bezier'
       }
-    }
+    },
+    {
+      selector: ':selected',
+      style: {
+        'background-color': 'yellow',
+        'line-color': 'yellow',
+        'target-arrow-color': 'black',
+        'source-arrow-color': 'black',
+      }
+    },
   ],
 }
