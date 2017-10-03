@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import cytoscape from 'cytoscape';
 import edgehandles from 'cytoscape-edgehandles';
 import dagre from 'cytoscape-dagre';
-import cycola from 'cytoscape-cola';
 
 cytoscape.use(dagre);
 edgehandles(cytoscape);

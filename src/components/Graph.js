@@ -40,8 +40,6 @@ class Graph extends Component {
   customEventHandlers(cy) {
     /// access the cy core from this function
     this.cy = cy;
-    
-    let selectedNodeId;
 
     //init settings for edgehandle extendtion
     cy.edgehandles({
