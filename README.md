@@ -1,5 +1,9 @@
-visual version control app using 
+Visual Version Control Interace 
 
+Using
 Cytoscape js
-React
-Cytoscape-React
+Cytoscape edgehandles
+cytoscape dagre
+Cytoscape-react
+create-react-app
+mousetrap
