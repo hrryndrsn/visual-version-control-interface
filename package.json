@@ -5,6 +5,7 @@
   "dependencies": {
     "cytoscape-dagre": "^2.1.0",
     "cytoscape-edgehandles": "^2.14.0",
+    "mousetrap": "^1.6.1",
     "react": "^16.0.0",
     "react-cytoscape": "^1.0.3",
     "react-dom": "^16.0.0",

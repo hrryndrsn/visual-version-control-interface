@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ReactCytoscape from './ReactCytoscape';
+import Mousetrap from 'mousetrap';
 import graphConfig from '../config/graphConfig';
 import '../style.css';
 
@@ -53,17 +54,28 @@ class Graph extends Component {
       }
     });
 
+    //id generating function
+    const stringGen = function(len) {
+        var text = "";
+        var charset = "abcdefghijklmnopqrstuvwxyz0123456789";
+        for( var i=0; i < len; i++ )
+            text += charset.charAt(Math.floor(Math.random() * charset.length)
+        );
+        return text;
+    }
+
     // create node at mouse location if shift is pressed
     cy.on('click', function(event) {
       let shiftPressed = event.originalEvent.shiftKey
       let mousePos = event.renderedPosition
-      let idNum = event.target.nodes().size();
-      let idString = idNum.toString();
+      
 
       if (event.target === cy && shiftPressed) {
         cy.add([
-          { group: "nodes", data: { id: "n" + idString }, renderedPosition: mousePos },
+          { group: "nodes", data: { id: stringGen(4) }, renderedPosition: mousePos },
         ]);
+
+        console.log(cy.elements().jsons());
       }
     });
 
@@ -72,11 +84,17 @@ class Graph extends Component {
       console.log('node selected', event.target._private.data);
     })
 
+    // Node 'freed', on drag stopped   
     cy.on('free', 'node', function(event) {
-      console.log('node moved!')
-      let graphElements = cy._private.elements;
-      console.log(graphElements);
+      console.log(cy.elements().jsons());
     })
+
+    //Delete selected node with backspace
+    Mousetrap.bind('backspace', function() {
+        cy.remove(':selected');
+        console.log(cy.elements().jsons());
+    });
+    
   } 
 
   render() {
